@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="support-count" v-if="seller.supports" @click="showDetail">
-        <span class="count">{{seller.supports.length}} 个</span>
+        <span class="count">{{seller.supports.length}} 个 <i class="icon-keyboard_arrow_right"></i></span>
       </div>
     </div>
     <div class="bulletin-wrapper" @click="showDetail">
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="detail-close" @click="hideDetail">
-        close
+        <i class="icon-close"></i>
       </div>
     </div>
   </div>
