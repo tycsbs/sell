@@ -95,7 +95,8 @@
           click: true
         })
         this.foodScroll = new BScroll(this.$els.menuContent, {
-          probeType: 3
+          probeType: 3,
+          click: true
         })
         this.foodScroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(Math.round(pos.y))
@@ -193,6 +194,7 @@
           margin-right: 10px
         .content
           flex: 1
+          position relative;
           .name
             margin: 2px 0 8px
             height: 14px
@@ -222,9 +224,8 @@
               font-size: 10px
               color: rgb(147, 153, 159)
 
-    .cartcontrol-wrapper
-      display block
-      position absolute
-      bottom 12px
-      right 0
+          .cartcontroll-wrapper
+            position absolute
+            right 0
+            bottom 12px
 </style>
