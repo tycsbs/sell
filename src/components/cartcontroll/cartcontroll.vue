@@ -58,6 +58,7 @@
       width 12px
       padding-top 6px
       line-height 24px
+      font-weight 700
       color rgb(0, 160, 220)
       text-align center
 </style>

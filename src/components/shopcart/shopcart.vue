@@ -3,13 +3,13 @@
     <div class="content">
       <div class="content-left">
         <div class="logo-wrapper">
-          <div class="logo">
-            <span class="icon-shopping_cart"></span>
+          <div class="logo" :class="{'highlight':totalCount>0}">
+            <span class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></span>
           </div>
           <span class="num" v-show="totalCount>0">{{totalCount}}</span>
         </div>
         <div class="price">￥{{totalPrice}}</div>
-        <div class="desc">另需配送费￥22元</div>
+        <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
         <div class="pay" :class="payClass">{{payDesc}}</div>
@@ -104,10 +104,14 @@
             text-align center
             background #2b343c
             border-radius 50%
+            &.highlight
+              background rgb(0,160,220)
             .icon-shopping_cart
               font-size 24px
               line-height 44px
               color #80858a
+              &.highlight
+                color #fff
           .num
             display inline-block
             position absolute
