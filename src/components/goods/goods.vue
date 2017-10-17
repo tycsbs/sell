@@ -28,6 +28,9 @@
                   <span class="now">￥{{food.price}}</span>
                   <span v-if="food.oldPrice" class="old">{{food.oldPrice}}</span>
                 </div>
+                <div class="cartcontroll-wrapper">
+                  <cartcontroll></cartcontroll>
+                </div>
               </div>
             </li>
           </ul>
@@ -41,6 +44,7 @@
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
   import shopcart from 'components/shopcart/shopcart'
+  import cartcontroll from 'components/cartcontroll/cartcontroll'
   const ERR_OK = 0
   export default {
     props: {
@@ -109,7 +113,8 @@
       }
     },
     components: {
-      shopcart
+      shopcart,
+      cartcontroll
     }
   }
 </script>

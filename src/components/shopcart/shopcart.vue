@@ -6,13 +6,13 @@
           <div class="logo">
             <span class="icon-shopping_cart"></span>
           </div>
-          <span class="num">{{totalCount}}</span>
+          <span class="num" v-show="totalCount>0">{{totalCount}}</span>
         </div>
         <div class="price">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥22元</div>
       </div>
       <div class="content-right">
-        <div class="pay">20元起送</div>
+        <div class="pay" :class="payClass">{{payDesc}}</div>
       </div>
     </div>
   </div>
@@ -50,6 +50,22 @@
           count += food.count
         })
         return count
+      },
+      payDesc () {
+        if (this.totalPrice === 0) {
+          return `￥${this.minPrice}元起送`
+        } else if (this.totalPrice < this.minPrice) {
+          return `还差￥${this.minPrice - this.totalPrice}元起送`
+        } else {
+          return '去结算'
+        }
+      },
+      payClass () {
+        if (this.totalPrice < this.minPrice) {
+          return 'not-enough'
+        } else {
+          return 'enough'
+        }
       }
     }
   }
@@ -105,7 +121,7 @@
             line-height 16px
             font-weight 700
             background #ff0a22
-            box-shadow 0 0 2px rgba(0,0,0,.1)
+            box-shadow 0 0 2px rgba(0, 0, 0, .1)
             color: #fff
         .price
           display inline-block
@@ -134,7 +150,6 @@
         text-align center
         font-size 12px
         font-weight 700
-        background #2b333b
         &.not-enough
           background #2b333b
         &.enough
