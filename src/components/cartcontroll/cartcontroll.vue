@@ -1,6 +1,8 @@
 <template>
   <div class="cartcontroll">
-    <div class="cart-decrease icon-remove_circle_outline" v-show="food.count>0" @click.stop.prevent="decreaseCart"></div>
+    <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart" transition="move">
+      <span class="inner icon-remove_circle_outline" transition="rotate" v-show="food.count>0"></span>
+    </div>
     <div class="cart-number" v-show="food.count>0">{{food.count}}</div>
     <div class="cart-add icon-add_circle" @click.stop.prevent="addCart"></div>
   </div>
@@ -45,10 +47,34 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .cartcontroll
     font-size 0
-    .cart-decrease, .cart-add
+    .cart-decrease
       display inline-block
-      font-size 24px
       padding 6px
+      transition all .4s linear
+      &.move-transition
+        opacity 1
+        transform translate3D(0,0,0)
+        .inner
+          display inline-block
+          width 24px
+          height 24px
+          font-size 24px
+          line-height 24px
+          color rgb(0, 160, 220)
+          transition all .4s linear
+          &.rotate-transition
+            transform roatate(0deg)
+          &.rotate-leave,&.rotate-enter
+            transform rotate(180deg)
+      &.move-enter,&.move-leave
+        opacity 0
+        transform translate3D(24px,0,0)
+        .inner
+          transform roatate(180deg)
+    .cart-add
+      display inline-block
+      padding 6px
+      font-size 24px
       line-height 24px
       color rgb(0, 160, 220)
     .cart-number
