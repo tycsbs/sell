@@ -3,6 +3,7 @@
     <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart" transition="move">
       <span class="inner icon-remove_circle_outline" transition="rotate" v-show="food.count>0"></span>
     </div>
+
     <div class="cart-number" v-show="food.count>0">{{food.count}}</div>
     <div class="cart-add icon-add_circle" @click.stop.prevent="addCart"></div>
   </div>
@@ -16,7 +17,7 @@
         type: Object,
         default () {
           return {
-            count: 0
+            count: 2
           }
         }
       }
@@ -50,7 +51,7 @@
     .cart-decrease
       display inline-block
       padding 6px
-      transition all .4s linear
+      transition all .3s linear
       &.move-transition
         opacity 1
         transform translate3D(0,0,0)
@@ -61,7 +62,7 @@
           font-size 24px
           line-height 24px
           color rgb(0, 160, 220)
-          transition all .4s linear
+          transition all .3s linear
           &.rotate-transition
             transform roatate(0deg)
           &.rotate-leave,&.rotate-enter

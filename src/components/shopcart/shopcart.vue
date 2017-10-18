@@ -24,7 +24,10 @@
       selectFoods: {
         type: Array,
         default () {
-          return []
+          return [{
+            count: 2,
+            price: 10
+          }]
         }
       },
       deliveryPrice: {
@@ -55,7 +58,8 @@
         if (this.totalPrice === 0) {
           return `￥${this.minPrice}元起送`
         } else if (this.totalPrice < this.minPrice) {
-          return `还差￥${this.minPrice - this.totalPrice}元起送`
+          let diff = this.minPrice - this.totalPrice
+          return `还差￥${diff}元起送`
         } else {
           return '去结算'
         }
@@ -105,7 +109,7 @@
             background #2b343c
             border-radius 50%
             &.highlight
-              background rgb(0,160,220)
+              background rgb(0, 160, 220)
             .icon-shopping_cart
               font-size 24px
               line-height 44px
