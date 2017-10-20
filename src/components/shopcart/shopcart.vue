@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" @click="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}">
@@ -20,20 +20,20 @@
         <div class="inner inner-hook"></div>
       </div>
     </div>
-    <div class="food-list">
-      <div class="list-title" v-show="listShow">
-        <span class="list-title">购物车</span>
-        <span class="list-clear">清除</span>
+    <div class="food-list" v-show="listShow" transition="fold">
+      <div class="list-header">
+        <span class="title">购物车</span>
+        <span class="clear" @click="clearCart">清除</span>
       </div>
-      <div class="list-content">
+      <div class="list-content" v-el:list-content>
         <ul>
-          <li class="food-item" v-for="food in selectFoods">
+          <li class="food" v-for="food in selectFoods">
             <span class="food-name">{{food.name}}</span>
             <div class="food-price">
-              <span>{{food.price * food.count}}</span>
+              <span>￥{{food.price*food.count}}</span>
             </div>
             <div class="cartcontroll-wrapper">
-              <cartcontroll></cartcontroll>
+              <cartcontroll :food="food"></cartcontroll>
             </div>
           </li>
         </ul>
@@ -43,6 +43,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from 'better-scroll'
   import cartcontroll from 'components/cartcontroll/cartcontroll'
   export default {
     props: {
@@ -74,7 +75,7 @@
           {show: false}
         ],
         dropBalls: [],
-        listShow: false
+        fold: true
       }
     },
     computed: {
@@ -108,6 +109,25 @@
         } else {
           return 'enough'
         }
+      },
+      listShow () {
+        if (!this.totalCount) {
+          this.fold = true
+          return false
+        }
+        let show = !this.fold
+        if (show) {
+          this.$nextTick(() => {
+            if (!this.scroll) {
+              this.scroll = new BScroll(this.$els.listContent, {
+                click: true
+              })
+            } else {
+              this.scroll.refresh()
+            }
+          })
+        }
+        return !this.fold
       }
     },
     methods: {
@@ -121,6 +141,19 @@
             return
           }
         }
+      },
+      toggleList () {
+        if (!this.totalCount) {
+          console.log(this.totalCount)
+          return
+        }
+        this.fold = !this.fold
+        return this.fold
+      },
+      clearCart () {
+        this.selectFoods.forEach((food) => {
+          food.count = 0
+        })
       }
     },
     transitions: {
@@ -169,6 +202,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import "../../common/stylus/mixin.styl"
   .shopcart
     position fixed
     left 0
@@ -271,4 +305,58 @@
             border-radius 50%
             background rgb(0, 160, 220)
             transition all .4s linear
+    .food-list
+      position absolute
+      width 100%
+      top 0
+      left 0
+      z-index -1
+      font-size 0
+      transition all .4s
+      &.fold-transition
+        transform translate3d(0, -100%, 0)
+      &.fold-enter, &.fold-leave
+        transform translate3d(0, 0, 0)
+      .list-header
+        height 40px
+        line-height 40px
+        font-size 12px
+        border-bottom 1px solid rgba(7, 17, 27, .1)
+        background #f3f5f7
+        .title
+          float left
+          padding 0 18px
+        .clear
+          float right
+          padding 0 18px
+          color rgb(0, 160, 220)
+      .list-content
+        font-size 12px
+        padding 0 18px
+        max-height 217px
+        overflow hidden
+        background #fff
+        .food
+          position relative
+          list-style none
+          padding 12px 0
+          box-sizing border-box
+          border-1px(rgba(7, 17, 27, .1))
+          .food-name
+            font-size 14px
+            line-height 24px
+            color rgb(7, 17, 27)
+          .food-price
+            position absolute
+            right 90px
+            bottom 12px
+            color rgb(240, 20, 20)
+            line-height 24px
+            font-weight 700
+          .cartcontroll-wrapper
+            position absolute
+            right 0
+            bottom 6px
+
+
 </style>

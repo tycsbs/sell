@@ -17,7 +17,7 @@
         type: Object,
         default () {
           return {
-            count: 2
+            count: 0
           }
         }
       }
