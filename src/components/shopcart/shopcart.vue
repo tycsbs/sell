@@ -20,10 +20,30 @@
         <div class="inner inner-hook"></div>
       </div>
     </div>
+    <div class="food-list">
+      <div class="list-title" v-show="listShow">
+        <span class="list-title">购物车</span>
+        <span class="list-clear">清除</span>
+      </div>
+      <div class="list-content">
+        <ul>
+          <li class="food-item" v-for="food in selectFoods">
+            <span class="food-name">{{food.name}}</span>
+            <div class="food-price">
+              <span>{{food.price * food.count}}</span>
+            </div>
+            <div class="cartcontroll-wrapper">
+              <cartcontroll></cartcontroll>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import cartcontroll from 'components/cartcontroll/cartcontroll'
   export default {
     props: {
       selectFoods: {
@@ -53,7 +73,8 @@
           {show: false},
           {show: false}
         ],
-        dropBalls: []
+        dropBalls: [],
+        listShow: false
       }
     },
     computed: {
@@ -140,6 +161,9 @@
           }
         }
       }
+    },
+    components: {
+      cartcontroll
     }
   }
 </script>

@@ -37,7 +37,8 @@
         </li>
       </ul>
     </div>
-    <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice"
+              :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -124,7 +125,9 @@
         }
       },
       _dropBall (target) {
-        this.$refs.shopcart.dropBall(target)
+        this.$nextTick(() => {
+          this.$refs.shopcart.dropBall(target)
+        })
       }
     },
     components: {
