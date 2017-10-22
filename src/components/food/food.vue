@@ -35,7 +35,7 @@
                       :ratings="food.ratings"></ratingselect>
         <div class="ratings-wrapper">
           <ul v-show="food.ratings && food.ratings.length">
-            <li v-show="needShow(rating.type,rating.text)" class="rating-item" v-for="rating in food.ratings">
+            <li v-show="needShow(rating.rateType,rating.text)" class="rating-item" v-for="rating in food.ratings">
               <div class="time">{{rating.rateTime | formatDate}}</div>
               <p class="text">
                 <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}"></span>{{rating.text}}
@@ -59,6 +59,7 @@
   import BScroll from 'better-scroll'
   import cartcontroll from '../../components/cartcontroll/cartcontroll'
   import ratingselect from '../../components/ratingselect/ratingselect'
+  import {formatDate} from '../../common/js/date'
   import Vue from 'vue'
   const ALL = 2
   export default {
@@ -130,8 +131,7 @@
     filters: {
       formatDate (time) {
         let date = new Date(time)
-        return date
-//        return formatDate(date, 'yyyy-MM-dd hh:mm')
+        return formatDate(date, 'yyyy-MM-dd hh:mm')
       }
     },
     components: {
