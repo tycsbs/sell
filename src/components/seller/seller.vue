@@ -70,8 +70,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {LoadFromLocal, SaveToLocal} from '../../common/js/store'
-  import star from '../../components/star/star'
+  import {LoadFromLocal, SaveToLocal} from 'common/js/store'
+  import star from 'components/star/star'
   import BScroll from 'better-scroll'
   export default {
     props: {

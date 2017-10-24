@@ -58,9 +58,9 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-  import star from '../../components/star/star'
-  import ratingselect from '../../components/ratingselect/ratingselect'
-  import {formatDate} from '../../common/js/date'
+  import star from 'components/star/star'
+  import ratingselect from 'components/ratingselect/ratingselect'
+  import {formatDate} from 'common/js/date'
   const ALL = 2
   export default {
     props: {

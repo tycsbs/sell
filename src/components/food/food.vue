@@ -57,9 +57,9 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-  import cartcontroll from '../../components/cartcontroll/cartcontroll'
-  import ratingselect from '../../components/ratingselect/ratingselect'
-  import {formatDate} from '../../common/js/date'
+  import cartcontroll from 'components/cartcontroll/cartcontroll'
+  import ratingselect from 'components/ratingselect/ratingselect'
+  import {formatDate} from 'common/js/date'
   import Vue from 'vue'
   const ALL = 2
   export default {
