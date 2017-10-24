@@ -12,7 +12,8 @@
         <a v-link="{path:'/seller'}">商家</a>
       </div>
     </div>
-    <router-view :seller="seller"></router-view>
+
+    <router-view :seller="seller" keep-alive></router-view>
   </div>
 </template>
 <script type="text/ecmascript-6">
