@@ -29,7 +29,7 @@
             </div>
           </li>
         </ul>
-        <div class="favorite">
+        <div class="favorite" @click="toggleFavorite">
           <span class="icon-favorite" :class="{'active':favorite}"></span>
           <span class="text">{{favoriteText}}</span>
         </div>
@@ -70,12 +70,25 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {LoadFromLocal, SaveToLocal} from '../../common/js/store'
   import star from '../../components/star/star'
   import BScroll from 'better-scroll'
   export default {
     props: {
       seller: {
         type: Object
+      }
+    },
+    data () {
+      return {
+        favorite: (() => {
+          return LoadFromLocal(this.seller.id, 'favorite', false)
+        })()
+      }
+    },
+    computed: {
+      favoriteText () {
+        return this.favorite === true ? '已收藏' : '未收藏'
       }
     },
     created () {
@@ -92,6 +105,13 @@
       this._initPics()
     },
     methods: {
+      toggleFavorite (event) {
+        if (!event._constructed) {
+          return
+        }
+        this.favorite = !this.favorite
+        SaveToLocal(this.seller.id, 'favorite', this.favorite)
+      },
       _initScroll () {
         if (!this.scroll) {
           this.scroll = new BScroll(this.$els.seller, {

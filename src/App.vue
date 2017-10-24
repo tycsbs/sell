@@ -16,19 +16,25 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import {urlParam} from './common/js/utils'
   import Header from './components/header/header'
   const ERR_OK = 0
   export default {
     data () {
       return {
-        seller: {}
+        seller: {
+          id: (() => {
+            let queryParam = urlParam()
+            return queryParam.id
+          })()
+        }
       }
     },
     created () {
-      this.$http.get('/api/seller').then((response) => {
+      this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
         response = response.body
         if (response.erron === ERR_OK) {
-          this.seller = response.data
+          this.seller = Object.assign({}, response.data, this.seller)
         }
       })
     },
