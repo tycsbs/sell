@@ -26,7 +26,7 @@
         seller: {
           id: (() => {
             let queryParam = urlParam()
-            return queryParam.id
+            return queryParam.id || 'bs123'
           })()
         }
       }
