@@ -1,5 +1,7 @@
 # sell
 
+[![Build Status](https://travis-ci.org/tycsbs/sell.svg?branch=master)](https://travis-ci.org/tycsbs/sell)
+
 > sell something
 
 ## Build Setup
