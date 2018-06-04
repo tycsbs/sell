@@ -4,7 +4,7 @@
 
 > This is a project based on Vue.js technology stack.
 
-## project description
+## Project Description
 
 > This sell project is aimed to learn vue.js ,  using the starving application as the prototype.
 
