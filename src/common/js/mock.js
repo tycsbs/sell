@@ -1379,8 +1379,16 @@ const AllData = {
   ]
 }
 
-const { seller, goods, ratings } = AllData
+// export var seller = AllData.seller
+// export var goods = AllData.goods
+// export var ratings = AllData.ratings
 
-export {
-  seller, goods, ratings
+export function getSeller () {
+  return AllData.seller
+}
+export function getGoods () {
+  return AllData.goods
+}
+export function getRatings () {
+  return AllData.ratings
 }

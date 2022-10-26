@@ -19,7 +19,7 @@
 <script type="text/ecmascript-6">
   import {urlParam} from './common/js/utils'
   import Header from './components/header/header'
-  import { seller } from './common/js/data'
+  import { getSeller } from './common/js/mock'
   // const ERR_OK = 0
   export default {
     data () {
@@ -33,12 +33,10 @@
       }
     },
     created () {
-      this.seller = Object.assign({}, seller, this.seller)
+      const _seller = getSeller()
+      this.seller = Object.assign({}, _seller, this.seller)
       // this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
-      //   response = response.body
-      //   if (response.erron === ERR_OK) {
-      //     this.seller = Object.assign({}, response.data, this.seller)
-      //   }
+      //   console.log(response)
       // })
     },
     components: {

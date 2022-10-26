@@ -48,8 +48,8 @@
   import shopcart from 'components/shopcart/shopcart'
   import cartcontroll from 'components/cartcontroll/cartcontroll'
   import food from 'components/food/food'
-  import { goods } from './common/js/data'
-  const ERR_OK = 0
+  import { getGoods } from '../../common/js/mock'
+  // const ERR_OK = 0
   export default {
     props: {
       seller: {
@@ -89,16 +89,10 @@
     },
     created () {
       // this.$http.get('/api/goods').then((response) => {
-      //   response = response.body
-      //   if (response.erron === ERR_OK) {
-      //     this.goods = response.data
-      //     this.$nextTick(() => {
-      //       this._initScroll()
-      //       this._calcHeight()
-      //     })
-      //   }
+      //   console.log(response)
       // })
-      this.goods = goods
+      const _goods = getGoods()
+      this.goods = _goods
       this.$nextTick(() => {
         this._initScroll()
         this._calcHeight()
