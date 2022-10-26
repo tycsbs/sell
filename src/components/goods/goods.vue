@@ -48,6 +48,7 @@
   import shopcart from 'components/shopcart/shopcart'
   import cartcontroll from 'components/cartcontroll/cartcontroll'
   import food from 'components/food/food'
+  import { goods } from './common/js/data'
   const ERR_OK = 0
   export default {
     props: {
@@ -87,15 +88,20 @@
       }
     },
     created () {
-      this.$http.get('/api/goods').then((response) => {
-        response = response.body
-        if (response.erron === ERR_OK) {
-          this.goods = response.data
-          this.$nextTick(() => {
-            this._initScroll()
-            this._calcHeight()
-          })
-        }
+      // this.$http.get('/api/goods').then((response) => {
+      //   response = response.body
+      //   if (response.erron === ERR_OK) {
+      //     this.goods = response.data
+      //     this.$nextTick(() => {
+      //       this._initScroll()
+      //       this._calcHeight()
+      //     })
+      //   }
+      // })
+      this.goods = goods
+      this.$nextTick(() => {
+        this._initScroll()
+        this._calcHeight()
       })
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     },

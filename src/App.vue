@@ -19,7 +19,8 @@
 <script type="text/ecmascript-6">
   import {urlParam} from './common/js/utils'
   import Header from './components/header/header'
-  const ERR_OK = 0
+  import { seller } from './common/js/data'
+  // const ERR_OK = 0
   export default {
     data () {
       return {
@@ -32,12 +33,13 @@
       }
     },
     created () {
-      this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
-        response = response.body
-        if (response.erron === ERR_OK) {
-          this.seller = Object.assign({}, response.data, this.seller)
-        }
-      })
+      this.seller = Object.assign({}, seller, this.seller)
+      // this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
+      //   response = response.body
+      //   if (response.erron === ERR_OK) {
+      //     this.seller = Object.assign({}, response.data, this.seller)
+      //   }
+      // })
     },
     components: {
       'v-header': Header

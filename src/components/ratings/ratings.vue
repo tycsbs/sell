@@ -61,6 +61,7 @@
   import star from 'components/star/star'
   import ratingselect from 'components/ratingselect/ratingselect'
   import {formatDate} from 'common/js/date'
+  import { ratings } from './common/js/data'
   const ALL = 2
   export default {
     props: {
@@ -108,21 +109,31 @@
       }
     },
     created () {
-      this.$http.get('/api/ratings').then((response) => {
-        response = response.body
-        if (response.erron === 0) {
-          this.ratings = response.data
-          this.$nextTick(() => {
-            if (!this.scroll) {
-              this.scroll = new BScroll(this.$els.ratings, {
-                click: true
-              })
-            } else {
-              this.scroll.refresh()
-            }
+      this.ratings = ratings
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll(this.$els.ratings, {
+            click: true
           })
+        } else {
+          this.scroll.refresh()
         }
       })
+      // this.$http.get('/api/ratings').then((response) => {
+      //   response = response.body
+      //   if (response.erron === 0) {
+      //     this.ratings = response.data
+      //     this.$nextTick(() => {
+      //       if (!this.scroll) {
+      //         this.scroll = new BScroll(this.$els.ratings, {
+      //           click: true
+      //         })
+      //       } else {
+      //         this.scroll.refresh()
+      //       }
+      //     })
+      //   }
+      // })
     },
     components: {
       star,
