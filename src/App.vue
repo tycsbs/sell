@@ -35,9 +35,9 @@
     created () {
       const _seller = getSeller()
       this.seller = Object.assign({}, _seller, this.seller)
-      // this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
-      //   console.log(response)
-      // })
+      this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
+        console.log(response)
+      })
     },
     components: {
       'v-header': Header
