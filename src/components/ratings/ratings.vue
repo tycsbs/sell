@@ -119,9 +119,9 @@
           this.scroll.refresh()
         }
       })
-      // this.$http.get('/api/ratings').then((response) => {
-      //   console.log(response)
-      // })
+      this.$http.get('/api/ratings').then((response) => {
+        console.log(response)
+      })
     },
     components: {
       star,

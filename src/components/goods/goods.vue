@@ -88,9 +88,6 @@
       }
     },
     created () {
-      // this.$http.get('/api/goods').then((response) => {
-      //   console.log(response)
-      // })
       const _goods = getGoods()
       this.goods = _goods
       this.$nextTick(() => {
@@ -98,6 +95,9 @@
         this._calcHeight()
       })
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      this.$http.get('/api/goods').then((response) => {
+        console.log(response)
+      })
     },
     methods: {
       selectMenu (index, event) {
