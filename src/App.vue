@@ -20,7 +20,7 @@
   import {urlParam} from './common/js/utils'
   import Header from './components/header/header'
   import { getSeller } from './common/js/mock'
-  // const ERR_OK = 0
+  const ERR_OK = 0
   export default {
     data () {
       return {
@@ -33,10 +33,11 @@
       }
     },
     created () {
-      const _seller = getSeller()
-      this.seller = Object.assign({}, _seller, this.seller)
       this.$http.get('/api/seller' + '?id=' + this.seller.id).then(function (response) {
-        console.log(response)
+        response = response.body
+        if (response.erron === ERR_OK) {
+          this.seller = Object.assign({}, response.data, this.seller)
+        }
       })
     },
     components: {

@@ -61,7 +61,6 @@
   import star from 'components/star/star'
   import ratingselect from 'components/ratingselect/ratingselect'
   import {formatDate} from 'common/js/date'
-  import { getRatings } from 'common/js/mock'
   const ALL = 2
   export default {
     props: {
@@ -109,18 +108,18 @@
       }
     },
     created () {
-      this.ratings = getRatings()
-      this.$nextTick(() => {
-        if (!this.scroll) {
-          this.scroll = new BScroll(this.$els.ratings, {
-            click: true
-          })
-        } else {
-          this.scroll.refresh()
-        }
-      })
       this.$http.get('/api/ratings').then((response) => {
-        console.log(response)
+        response = response.body
+        this.ratings = response.data
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$els.ratings, {
+              click: true
+            })
+          } else {
+            this.scroll.refresh()
+          }
+        })
       })
     },
     components: {
