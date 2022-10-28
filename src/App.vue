@@ -19,7 +19,6 @@
 <script type="text/ecmascript-6">
   import {urlParam} from './common/js/utils'
   import Header from './components/header/header'
-  import { getSeller } from './common/js/mock'
   const ERR_OK = 0
   export default {
     data () {
