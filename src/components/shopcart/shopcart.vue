@@ -283,7 +283,7 @@
         .desc
           display: inline-block
           vertical-align: top
-          margin: 12px 0 0 12px
+          margin: 6px 0 0 12px
           line-height: 24px
           font-size: 10px
       .content-right
