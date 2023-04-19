@@ -45,4 +45,4 @@ jobs:
                   # 用户
                   REMOTE_USER: 'root'
                   # 目标地址
-                  TARGET: '/usr/share/nginx/html/app/'
+                  TARGET: '/home/www/app/'
