@@ -14,6 +14,9 @@
     </div>
 
     <router-view :seller="seller" keep-alive></router-view>
+    <div class="footer-beian">
+      <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2022027412号-1</a>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -63,4 +66,17 @@
         color: rgb(77, 85, 93)
         &.active
           color: rgb(240, 20, 20)
+
+  .footer-beian
+    width: 100%
+    height: 20px
+    position: fixed
+    z-index: 10
+    bottom: 0
+    left: 0
+    text-align: center
+    font-size: 12px
+    a
+      color: #056ed7
+      text-decoration: none
 </style>
